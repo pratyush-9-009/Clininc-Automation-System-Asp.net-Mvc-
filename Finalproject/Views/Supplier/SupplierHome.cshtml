@@ -1,0 +1,54 @@
+﻿@model Finalproject.Models.DashboardModel
+@{
+    ViewBag.Title = "SupplierHome";
+}
+
+
+<div class="row">
+    <div class="col-lg-3">
+    @{
+        Html.RenderPartial("SupplierPartial");
+    }
+    </div>
+    <div class="col-lg-9">
+        <h3 style="color:white;">Supplier Space </h3><br />
+        <div class="row">
+            <div class="col-lg-4">
+
+                <div class="card text-white bg-primary mb-3"style="width:200px; height:200px; border:double;">
+                    <br /><br />
+                    <div class="card-body text-center">
+                        <p class="card-text">Total Order</p>
+                        <p class="card-text">
+                            @Model.TotalOrder
+
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-4">
+                <div class="card text-white bg-primary mb-3" style="width:200px; height:200px; border:double;">
+                    <br />  <div class="card-header text-center">Status Count</div>
+                    <br />
+                    <div class="card-body text-center">
+
+                        <p class="card-text">
+                            Dispatched : @Model.Dispatched<br />
+                            Delievered : @Model.Delievered<br />
+                            Requested : @Model.Requested<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+

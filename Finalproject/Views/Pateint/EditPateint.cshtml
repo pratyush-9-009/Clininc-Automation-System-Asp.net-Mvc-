@@ -1,0 +1,67 @@
+﻿@model Finalproject.Models.PateintViewModel
+@{
+    ViewBag.Title = "EditPateint";
+}
+
+<div class="row">
+    <div class="col-lg-3">
+
+        @{
+            Html.RenderPartial("PateintPartial");
+        }
+
+
+    </div>
+
+    @using (Html.BeginForm("PostEditPateint", "Pateint", FormMethod.Post))
+    {
+        <div class="col-lg-9">
+            <h3 style="color:white;">Edit Your Profile</h3>
+            <br />
+            <div class="form-group">
+                <label>First Name</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.FirstName, "", new { @class = "text-danger",style="color:white;" })
+
+            </div>
+
+            <div class="form-group">
+                <label>Last Name</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.LastName, "", new { @class = "text-danger",style="color:white;" })
+
+            </div>
+
+            <div class="form-group">
+                <label>Date Of Birth (mm/dd/yyyy)</label><label style="color:darkolivegreen"> *</label><br/>
+                @Html.EditorFor(a => a.DateOfBirth, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.DateOfBirth, "", new { @class = "text-danger",style="color:white;" })
+
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label><label style="color:darkolivegreen"> *</label><br />
+                Male: @Html.RadioButtonFor(a => a.Gender, "Male")
+                Female: @Html.RadioButtonFor(a => a.Gender, "Female")
+
+            </div>
+
+            <div class="form-group">
+                <label>Address</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.Address, new { @class = "form-control", style = "height:70px;"  })
+                @Html.ValidationMessageFor(a => a.Address, "", new { @class = "text-danger",style="color:white;"})
+
+            </div>
+
+            <br/>
+            <div class="form-group">
+                <label></label>
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+            <div>
+            @ViewBag.message
+            </div>
+        </div>
+    }
+</div>
+

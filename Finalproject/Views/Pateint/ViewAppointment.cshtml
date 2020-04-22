@@ -1,0 +1,44 @@
+﻿@model Finalproject.Models.DoctorAppModel
+@{
+    ViewBag.Title = "ViewAppointment";
+}
+
+<div class="row">
+    <div class="col-lg-3">
+
+        @{
+            Html.RenderPartial("PateintPartial");
+        }
+
+    </div>
+
+    <div class="col-lg-9">
+        <h3 style="color:white;">View Your Appointments</h3><br/>
+        <table class="table table-responsive">
+            <tr>
+        
+                <th>Doctor Name</th>
+                <th>Subject</th>
+                <th>Description</th>
+                <th>Appointment Date</th>
+                <th>Appointment Status</th>
+
+
+            </tr>
+            @foreach (var item in Model.lstDoc)
+            {
+        <tr>
+            <td>@item.DoctorName</td>
+            <td>@item.Subject</td>
+            <td>@item.Description</td>
+            <td>@item.AppointmentDate.Value.ToString("dd-MMM-yyyy")</td>
+            <td>@item.AppointmentStatus</td>
+
+
+        </tr>
+            }
+
+        </table>
+    </div>
+</div>
+

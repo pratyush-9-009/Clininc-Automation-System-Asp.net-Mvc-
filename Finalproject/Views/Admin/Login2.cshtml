@@ -1,0 +1,44 @@
+﻿@model Finalproject.Models.AdminLoginModel
+@{
+    ViewBag.Title = "Login2";
+}
+
+    <style>
+        .mcen {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 30em;
+            height: 25em;
+            margin-top: -12em;
+            margin-left: -15em;
+        }
+    </style>
+@using (Html.BeginForm("PostLogin2", "Admin", FormMethod.Post))
+{
+    <div class="mcen">
+    <br />
+    <br />
+    <h3 style="font-family:Cambria;font-weight:bold;margin-left:3em;">Admin Login</h3>
+    <br />
+    <div class="form-group">
+        <label>Email</label><label style="color:white"> *</label>
+        @Html.TextBoxFor(a => a.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger", style = "color:white;" })
+
+
+    </div><br/>
+          <div class="form-group">
+              <label>Password</label><label style="color:white"> *</label>
+              @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+              @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger", style = "color:white;" })
+
+          </div>
+
+    <div class="form-group">
+        <label></label>
+        <input type="submit" value="Login" class="btn btn-success" />
+    </div>
+        <div>@ViewBag.Message</div>
+        </div>
+}

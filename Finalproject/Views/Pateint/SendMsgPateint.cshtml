@@ -1,0 +1,50 @@
+﻿@model Finalproject.Models.InboxModel
+@{
+    ViewBag.Title = "SendMsgPateint";
+}
+
+
+
+<div class="row">
+    <div class="col-lg-3">
+
+        @{
+            Html.RenderPartial("PateintPartial");
+        }
+
+    </div>
+    @using (Html.BeginForm("PostSendMsgPateint", "Pateint", FormMethod.Post))
+    {
+        <div class="col-lg-9">
+            <h3 style="color:white;">Message Your Doctor !</h3><br/>
+            <br />
+            <div class="form-group">
+                <label>Doctors Available</label><label style="color:darkolivegreen"> *</label>
+                @Html.DropDownListFor(a => a.DoctorId, Model.doclst2, "Select", new { @class = "form-control" })
+
+
+            </div>
+
+            <div class="form-group">
+                <label>Subject</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.Subject, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Subject, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                <label>MessageDetail</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.MessageDetail, new { @class = "form-control", style = "height:70px;" })
+                @Html.ValidationMessageFor(a => a.MessageDetail, "", new { @class = "text-danger" })
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Send" class="btn btn-success" />
+            </div>
+            <div>
+            @ViewBag.message
+            </div>
+        </div>
+    }
+    </div>
+
+

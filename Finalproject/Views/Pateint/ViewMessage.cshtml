@@ -1,0 +1,51 @@
+﻿@model Finalproject.Models.InboxModel
+@{
+    ViewBag.Title = "ViewMessage";
+}
+
+
+<div class="row">
+    <div class="col-lg-3">
+
+        @{
+            Html.RenderPartial("PateintPartial");
+        }
+
+    </div>
+    
+    <div class="col-lg-9">
+        <h3 style="color:white;">View Your Messages Here!</h3><br/>
+        @{
+            Html.RenderPartial("sentRecView");
+        }
+        <table class="table table-responsive">
+            <tr>
+
+
+                <th>Doctor Name</th>
+                <th>Subject</th>
+                <th>MessageDetail</th>
+                <th>MessageDate</th>
+                <th>Is Read</th>
+
+
+            </tr>
+            @foreach (var item in Model.doctorlist)
+            {
+                <tr>
+                    <td>@item.DoctorName</td>
+                    <td>@item.Subject</td>
+                    <td>@item.MessageDetail</td>
+                    <td>@item.MessageDate.Value.ToString("dd-MMM-yyyy")</td>
+                    <td>@item.IsRead</td>
+
+
+                </tr>
+            }
+
+        </table>
+
+    </div>
+ 
+</div>
+

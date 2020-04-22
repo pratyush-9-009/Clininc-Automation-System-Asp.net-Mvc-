@@ -1,0 +1,45 @@
+﻿@model Finalproject.Models.PasswordChangeModel
+@{
+    ViewBag.Title = "AdminChangePass";
+}
+
+
+<div class="row">
+    <div class="col-lg-3">
+        @{
+            Html.RenderPartial("AdminPartial");
+        }
+    </div>
+    @using (Html.BeginForm("PostAdminPassword", "Admin", FormMethod.Post))
+    {
+
+        <div class="col-lg-9">
+            <h3 style="color:white;">Change Your Password! </h3><br/>
+            <div class="form-group">
+                <label>Old Password</label><label style="color:darkolivegreen"> *</label>
+                @Html.PasswordFor(a => a.OldPassword, new { @class = "form-control", @maxlength = "10" })
+                 @Html.ValidationMessageFor(a => a.OldPassword, "",new { @class = "text-danger",style="color:white;" })            
+            
+            </div>
+            <div class="form-group">
+                <label>New Password</label><label style="color:darkolivegreen"> *</label>
+                @Html.PasswordFor(a => a.NewPassword, new { @class = "form-control", @maxlength = "10" })
+                @Html.ValidationMessageFor(a => a.NewPassword, "", new { @class = "text-danger",style="color:white;" })
+            </div>
+
+            <div class="form-group">
+                <label>Confirm Password</label><label style="color:darkolivegreen"> *</label>
+                @Html.PasswordFor(a => a.ConfirmPassword, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.ConfirmPassword, "",new { @class = "text-danger",style="color:white;" })
+            </div>
+
+            <div class="form-group">
+                <label></label>
+                <input type="submit" value="Reset" class="btn btn-success" />
+            </div>
+            <div>
+            @ViewBag.message
+            </div>
+        </div>
+    }
+    </div>

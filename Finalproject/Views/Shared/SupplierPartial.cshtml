@@ -1,0 +1,99 @@
+﻿
+@using Finalproject.Models
+@{
+    int memid = Convert.ToInt32(Session["MemberId"]);
+    using (ProjectEntities1 db = new ProjectEntities1())
+    {
+        var gdata = db.Suppliers.FirstOrDefault(a => a.MemberId == memid);
+        if (gdata != null)
+        {
+            <marquee>
+                <p style="font-weight:bolder;font-family:Courier New, Courier, monospace; font-size:18px;padding-left:3em;"><img src="~/Images/iconimage.png" height="20" width="20" /> Welcome @gdata.FirstName @gdata.LastName</p>
+            </marquee>
+            <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+            <div class="container">
+                <div class="box">
+                    <div class="menu">
+                        <div class="logo-box"></div>
+                        <div class="menu-list">
+                            <ul style="list-style-type:none;line-height:300%">
+                                <li>
+
+                                    <a href="@Url.Action("SupplierHome", "Supplier")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Dashboard</span>
+                                    </a>
+                                    <br />
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("EditSupplier", "Supplier")" style="color:white;font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Edit Profile</span>
+                                    </a>
+                                    <br />
+                                </li>
+                                <li>
+
+                                    <a href="@Url.Action("ChangePassSupplier", "Supplier")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Change Password</span>
+                                    </a>
+                                    <br />
+                                </li>
+
+
+                                <li>
+                                    <a href="@Url.Action("ViewOrderSup", "Supplier")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        View Order Details
+                                    </a>
+                                    <br />
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            var gdata2 = db.MemberLogins.FirstOrDefault(a => a.MemberId == memid);
+
+            <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+            <marquee>
+                <p style="font-weight:bolder;font-family:Courier New, Courier, monospace; font-size:18px;padding-left:3em;"><img src="~/Images/iconimage.png" height="20" width="20" /> Welcome @gdata2.EmailId</p>
+            </marquee>
+            <div class="container">
+                <div class="box">
+                    <div class="menu">
+                        <div class="logo-box"></div>
+                        <div class="menu-list">
+                            <ul style="list-style-type:none;line-height:300%">
+                                <li>
+
+                                    <a href="@Url.Action("SupplierHome", "Supplier")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Dashboard</span>
+                                    </a>
+                                    <br />
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("EditSupplier", "Supplier")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Edit Profile</span>
+                                    </a>
+                                    <br />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    }
+}
+
+

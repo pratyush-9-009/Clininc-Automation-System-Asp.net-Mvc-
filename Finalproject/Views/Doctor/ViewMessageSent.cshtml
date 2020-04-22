@@ -1,0 +1,48 @@
+﻿@model Finalproject.Models.InboxModel
+
+@{
+    ViewBag.Title = "ViewMessageDoc";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<div class="row">
+    <div class="col-lg-3">
+        @{
+            Html.RenderPartial("DoctorPartial");
+        }
+    </div>
+    <div class="col-lg-9">
+        <h3>Check Your Messages Here!</h3><br />
+        @{
+            Html.RenderPartial("sentRecView");
+        }
+        <table class="table table-bordered">
+            <tr>
+
+
+                <th>Pateint Name</th>
+                <th>Subject</th>
+                <th>MessageDetail</th>
+                <th>MessageDate</th>
+
+
+
+            </tr>
+            @foreach (var item in Model.doctorlist)
+            {
+                <tr>
+                    <td>@item.PateintName</td>
+                    <td>@item.Subject</td>
+                    <td>@item.MessageDetail</td>
+                    <td>@item.MessageDate.Value.ToString("dd-MMM-yyyy")</td>
+
+
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@model Finalproject.Models.DrugViewModel
+@{
+    ViewBag.Title = "AddDrugsAdmin";
+}
+
+
+<div class="row">
+    <div class="col-lg-3">
+        @{
+            Html.RenderPartial("AdminPartial");
+        }
+    </div>
+
+
+    @using (Html.BeginForm("PostAddDrugsAdmin", "Admin", FormMethod.Post))
+    {   @Html.HiddenFor(a => a.DrugId)
+        <div class="col-lg-9">
+            <h3 style="color:white;">Add Drugs/Medicines</h3><br/>
+            
+            <div class="form-group">
+                <label>Drug Name</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a=>a.DrugName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.DrugName, "", new { @class = "text-danger",style="color:white;" })
+            </div>
+
+            <div class="form-group">
+                <label>Manufactured Date (mm/dd/yyyy)</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.ManufactureDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.ManufactureDate, "", new { @class = "text-danger",style="color:white;" })
+            </div>
+
+            <div class="form-group">
+                <label>Expired Date (mm/dd/yyyy)</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.ExpiredDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.ExpiredDate, "", new { @class = "text-danger",style="color:white;" })
+            </div>
+
+            <div class="form-group">
+                <label>Used For</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.UsedFor, new { @class = "form-control", style = "height:70px;" })
+                @Html.ValidationMessageFor(a => a.UsedFor, "", new { @class = "text-danger",style="color:white;" })
+            </div>
+
+            <div class="form-group">
+                <label>Side Effects</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.SideEffects, new { @class = "form-control", style = "height:70px;" })
+                @Html.ValidationMessageFor(a => a.SideEffects, "", new { @class = "text-danger",style="color:white;" })
+            </div>
+
+            <div class="form-group">
+                <label>Total Quantity Available</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.TotalQuantityAvailable, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.TotalQuantityAvailable, "", new { @class = "text-danger",style="color:white;" })
+
+            </div>
+            
+            <div class="form-group">
+        <label></label>
+        <input type="submit" value="Add / Update" class="btn btn-success" />
+    </div>
+            <div style="text-decoration-color:brown;">
+                <p style="text-decoration-color:darkblue;">@ViewBag.Message</p>
+            </div>
+        </div>
+     }
+</div>

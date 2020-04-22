@@ -1,0 +1,125 @@
+﻿@model Finalproject.Models.AdminOrderModel
+@{
+    ViewBag.Title = "ViewOrderSup";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<div class="row">
+    <div class="col-lg-3">
+        @{
+            Html.RenderPartial("SupplierPartial");
+        }
+    </div>
+    <div class="col-lg-9">
+        <h3 style="color:white;">View Your Orders! </h3><br />
+        <table class="table table-responsive">
+            <tr>
+                <th>Order Number</th>
+                <th>Pateint Name</th>
+                <th>Drug Name</th>
+                <th>Quantity</th>
+                <th>Order Date</th>
+                
+                <th>Delievery Status</th>
+                <th>Operation</th>
+
+                <th>Save</th>
+
+            </tr>
+            @foreach (var item in Model.lstAdmin)
+            {
+        <tr>
+            <td>@item.OrderNumber</td>
+            <td>@item.PateintName</td>
+            <td>@item.Drugname</td>
+            <td>@item.Quantity</td>
+            <td>@item.OrderedDate.Value.ToString("dd-MMM-yyyy")</td>
+
+
+            @{ if (@item.OrderStatus == "Delievered")
+                {
+                    <td>Delivered On :@item.DelieveredDate.Value.ToString("dd-MMM-yyyy")</td>
+                }
+                else
+                {
+                    <td>@item.OrderStatus</td>
+                    }
+                }
+
+                <td>
+
+                    @{ string Disabledd = "";
+                        if (@item.OrderStatus == "Delievered")
+                        {
+                            Disabledd = "disabled";
+                            <div>
+                                Dispatched: <input type="radio" value="Dispatched" name="Appstatus" id="dis" disabled="@Disabledd" />
+                                Delievered:  <input type="radio" value="Delievered" name="Appstatus" id="del" disabled="@Disabledd" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                Dispatched: <input type="radio" value="Dispatched" name="Appstatus" id="dis" />
+                                Delievered:  <input type="radio" value="Delievered" name="Appstatus" id="del" />
+                            </div>
+
+                        }
+                    }
+
+                </td>
+                <td>
+                    @{
+                        string Disabled = "";
+                        if (@item.OrderStatus == "Delievered")
+                        {
+                            Disabled = "disable";
+                            <input type="submit" class="btn btn-primary" id="btnSubmit_@item.OrderId" onclick="SubmitAction('SubmitForApproval')" disabled="@Disabled" />
+                        }
+                        else
+                        {
+                            <input type="submit" class="btn btn-primary" id="btnSubmit_@item.OrderId" />
+                        }
+                    }
+                </td>
+                <td>
+                    <script>
+                    $(document).ready(function () {
+
+                                if ($("#del").is(":checked")) {
+                                        $("#btnSubmit_@item.OrderId").attr("disabled", true);
+                                    }
+                                $("#btnSubmit_@item.OrderId").click(function () {
+                                    var operation = $("input[name='Appstatus']:checked").val();
+                                    @*if ($("#del").is(":checked")) {
+                                        $("#btnSubmit_@item.OrderId").attr("disabled", "disabled");
+                                    }*@
+                                    var dataValue = {
+                                        OrderId: @item.OrderId,
+
+                                        OrderStatus: operation
+                                    };
+
+                                    $.ajax({
+                                        url: '@Url.Action("PostViewSup","Supplier")',
+                                        type: 'post',
+                                        data: dataValue,
+                                        dataType: 'json',
+                                        success: function () {
+                                              window.location.href = '@Url.Action("ViewOrderSup","Supplier")';
+                                        },
+                                        error: function(){
+                                            alert("Error Occured");
+                                        }
+                                    });
+                                });
+                            });
+                    </script>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>
+

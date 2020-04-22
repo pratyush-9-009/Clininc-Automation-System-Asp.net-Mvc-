@@ -1,0 +1,97 @@
+﻿@model Finalproject.Models.AdminOrderModel
+@{
+    ViewBag.Title = "ViewOrder";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<div class="row">
+    <div class="col-lg-3">
+        @{
+            Html.RenderPartial("AdminPartial");
+        }
+    </div>
+
+    <div class="col-lg-9">
+        <h3 style="color:white;">View Your orders </h3><br /> 
+        <table class="table table-responsive">
+            <tr>
+                <th>Pateint Name</th>
+                <th>Drug Name</th>
+                <th>Order Number</th>
+                <th>Quantity</th>
+                <th>Order Date</th>
+                <th>Order Status</th>
+                <th>Supplier</th>
+                <th>Operation</th>
+            </tr>
+            @foreach (var item in Model.lstAdmin)
+            {
+                <tr>
+                    <td>@item.PateintName</td>
+                    <td>@item.Drugname</td>
+                    <td>@item.OrderNumber</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.OrderedDate.Value.ToString("dd-MMM-yyyy")</td>
+                    <td>@item.OrderStatus</td>
+                      @if (item.OrderStatus != "Requested")
+                      {
+                             <td>@item.SupplierName</td>
+                      }
+                      else
+                      {
+                    <td>  @Html.DropDownListFor(a => a.SupplierId, Model.suplist, "-Select-", new
+                     {
+                         @class = "form-control",
+                         @id = "ddl_" + item.OrderId + ""
+                     })
+                                </td>
+                      }
+                    @if (item.OrderStatus == "Requested")
+                    {
+                    <td><input type="submit" class="btn btn-primary" id="btnSubmit_@item.OrderId" value="Assign" />
+                            
+                       <script>
+                            $(document).ready(function () {
+                                $("#btnSubmit_@item.OrderId").click(function () {
+                                    var supplier = $("#ddl_@item.OrderId").val();
+                                    @*$("#btnSubmit_@item.OrderId").prop("disabled", true);*@
+                                @*$("#btnSubmit_@item.OrderId").submit(function (e) {
+                                        e.preventDefault();
+                                        $("#btnSubmit_@item.OrderId").attr("disabled", true);
+                                    });*@
+                                    var orderstatus = "Assigned";
+                                    var dataValue = {
+                                        OrderId: @item.OrderId,
+                                        SupplierId: supplier
+                                       
+
+
+                                    };
+
+                                    $.ajax({
+                                        url: '@Url.Action("PostorderAdmin", "Admin")',
+                                        type: 'post',
+                                        data: dataValue,
+                                        dataType: 'json',
+                                        success: function () {
+                                            window.location.href = '@Url.Action("ViewOrder", "Admin")';
+                                        },
+                                        error: function(){
+                                            alert("Error Occured");
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                        </td>
+                    }
+                    else
+                    {
+                        <td><input type="submit" class="btn btn-primary" id="btnSubmit_@item.OrderId" value="Assign" disabled/></td>
+                    }
+                     </tr>
+            }
+        </table>
+   </div>
+</div>

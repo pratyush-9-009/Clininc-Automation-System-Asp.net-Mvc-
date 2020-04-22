@@ -1,0 +1,126 @@
+﻿@model Finalproject.Models.DoctorAppModel
+@{
+    ViewBag.Title = "ViewAppointment";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<div class="row">
+    <div class="col-lg-3">
+        @{
+            Html.RenderPartial("DoctorPartial");
+        }
+    </div>
+    <div class="col-lg-9">
+        <h3 style="color:white;">Your Appointments!</h3><br/>
+        <table class="table table-responsive">
+            <tr>
+
+
+                <th>Pateint Name</th>
+                <th>Subject</th>
+                <th>Appoinment Details</th>
+                <th>AppointmentDate</th>
+                <th>AppointmentStatus</th>
+                <th>Accept/Reject</th>
+                <th>Fix Appointment</th>
+
+
+            </tr>
+            @foreach (var item in Model.lstDoc)
+            {
+          <tr>
+            <td>@item.PateintName</td>
+            <td>@item.Subject</td>
+            <td>@item.AppointmentDate.Value.ToString("dd-MMM-yyyy")</td>
+              <td>@item.Description</td>
+            <td>@item.AppointmentStatus</td>
+           
+                
+            <td>
+                @{ string Disabledd = "";
+                    if (@item.AppointmentStatus == "Rejected" || @item.AppointmentStatus == "Approved")
+                    {
+                        Disabledd = "disabled";
+                    <div>
+                        Accept: <input type="radio" value="Approved" name="Appstatus" id="accep" disabled="@Disabledd" />
+                        Reject:  <input type="radio" value="Rejected" name="Appstatus" id="rej" disabled="@Disabledd" />
+                    </div>
+                }
+                    else
+                    {
+                    <div>
+                        Accept: <input type="radio" value="Approved" name="Appstatus" id="del"/>
+                        Reject:  <input type="radio" value="Rejected" name="Appstatus" id="del"/>
+                    </div>
+
+                }
+        }
+            </td>
+<td>                
+                    @{
+                        string Disabled = "";
+                        if (@item.AppointmentStatus == "Rejected" || @item.AppointmentStatus == "Approved")
+                        {
+                            Disabled = "disable";
+                            <input type="submit" class="btn btn-primary" id="btnSubmit_@item.AppointmentId" onclick="SubmitAction('SubmitForApproval')" disabled="@Disabled" />
+                        }
+                        else
+                        {
+                            <input type="submit" class="btn btn-primary" id="btnSubmit_@item.AppointmentId" />
+                        }
+                    }
+
+
+                </td>
+                <td>
+                    <script>
+                            $(document).ready(function () {
+                                //var astatus = $("input[name='Appstatus']:checked").val();
+                                    $("#btnSubmit_@item.AppointmentId").click(function () {
+                                        @*var status = $("input[name='Appstatus']:checked").val();
+                                        if (status == "Approved" || status == "Rejected") {
+                                            $("#btnSubmit_@item.AppointmentId").attr('disabled', 'disabled');
+
+                                        }
+                                        else {*@
+                                        var status = $("input[name='Appstatus']:checked").val();
+                                        @*if (status == "Approved" || status == "Rejected") {
+                                            $("#btnSubmit_@item.AppointmentId").attr('disabled', 'disabled');*@
+                                            var dataValue = {
+                                                AppointmentId: @item.AppointmentId,
+
+                                                AppointmentStatus: status
+                                            };
+
+                                            $.ajax({
+                                                url: '@Url.Action("PostViewAppointment","Doctor")',
+                                                type: 'post',
+                                                data: dataValue,
+                                                dataType: 'json',
+                                                success: function () {
+                                                    window.location.href = '@Url.Action("ViewAppointment","Doctor")';
+                                                },
+                                                error: function () {
+                                                    alert("Error Occured");
+                                                }
+                                            });
+
+
+                                            // When User Fills Out Form Completely
+                                        @*$("form").keyup(function () {
+
+                                            $("#btnSubmit_@item.AppointmentId").removeAttr('disabled');
+                                        });*@
+
+                                    });
+
+
+                            });
+                    </script>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>

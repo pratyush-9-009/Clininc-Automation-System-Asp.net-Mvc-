@@ -1,0 +1,106 @@
+﻿@model Finalproject.Models.InboxModel
+
+@{
+    ViewBag.Title = "ViewMessageDoc";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-lg-3">
+        @{
+            Html.RenderPartial("DoctorPartial");
+        }
+    </div>
+    <div class="col-lg-9">
+        <h3 style="color:white;">Check Your Messages Here!</h3><br />
+        @{
+            Html.RenderPartial("sentRecView");
+        }
+
+        <table class="table table-responsive">
+            <tr>
+
+
+                <th>Pateint Name</th>
+                <th>Subject</th>
+                <th>MessageDetail</th>
+                <th>MessageDate</th>
+                <th>Send Reply!</th>
+
+
+            </tr>
+            @foreach (var item in Model.doctorlist)
+            {
+                <tr>
+                    <td>@item.PateintName</td>
+                    <td>@item.Subject</td>
+                    <td>@item.MessageDetail</td>
+                    <td>@item.MessageDate.Value.ToString("dd-MMM-yyyy")</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_@item.MessageId" onclick="addEventListener.ajax">
+                            Reply
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" data-backdrop="false" id="exampleModal_@item.MessageId" style="z-index:8;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <center><h5 class="modal-title" id="exampleModalLabel"> Send A Message!</h5></center>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Message: <input type="text" id="txtMessage_@item.MessageId" class="form-control" />
+                                        Subject: <input type="text" id="txtSubject_@item.MessageId" class="form-control" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" id="btnSave_@item.MessageId" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            $(document).ready(function () {
+                                $("#btnSave_@item.MessageId").click(function () {
+                                    var subject = $("#txtMessage_@item.MessageId").val();
+                                    var detail = $("#txtSubject_@item.MessageId").val();
+                                    var dataValue = {
+                                        MessageId: @item.MessageId,
+                                        Subject:subject,
+                                        MessageDetail:detail
+
+
+                                    };
+
+                                    $.ajax({
+                                        url: '@Url.Action("PostViewMessageDoc","Doctor")',
+                                        type: 'post',
+                                        data: dataValue,
+                                        dataType: 'json',
+                                        success: function () {
+
+                                        },
+                                        error: function(){
+                                            alert("Error Occured");
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                    </td>
+
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+

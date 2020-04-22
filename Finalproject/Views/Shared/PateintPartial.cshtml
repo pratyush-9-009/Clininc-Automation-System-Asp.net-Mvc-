@@ -1,0 +1,222 @@
+﻿<style>
+
+
+
+
+    /*---End Resets--- */
+    /*---Color Variables--- */
+    /*--End Color Variables--- */
+
+    /*   Holder for the Content   */
+    .elipse:hover elipse::after {
+        color: white;
+    }
+
+    .box {
+        width: 1200px;
+        height: 900px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .menu-list li {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        text-decoration-color: white;
+        letter-spacing: 1px;
+        padding: 0px 0px;
+        list-style: none;
+        color: white;
+        -webkit-transition: all ease-in-out 150ms;
+        transition: all ease-in-out 150ms;
+        width: 200px;
+        height: 70px;
+        background-color: #581A51;
+        z-index: 4;
+    }
+
+        .menu-list li:nth-child(1) {
+            /*background-color: #6A2761;*/
+            background-color: #6A2761;
+        }
+
+        .menu-list li:nth-child(2) {
+            background-color: #802767;
+            /*#802767;*/
+        }
+
+        .menu-list li:nth-child(3) {
+            background-color: #8A2864;
+        }
+
+        .menu-list li:nth-child(4) {
+            background-color: #A52868;
+        }
+
+        .menu-list li:nth-child(5) {
+            background-color: #B32969;
+        }
+
+        .menu-list li:nth-child(6) {
+            background-color: #C22A6A;
+        }
+
+        .menu-list li:nth-child(7) {
+            background-color: #CB2E6C;
+        }
+
+        .menu-list li:hover {
+            box-shadow: 2px 4px 30px 7px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            width: 220px;
+            position: relative;
+            z-index: 5;
+            /*   Add 8 px on hover to margin to keep up with animation   */
+        }
+
+            .menu-list li:hover a {
+                margin-left: 88px;
+            }
+
+        .menu-list li a {
+            margin-left: 10px;
+            -webkit-transition: all ease-in-out 150ms;
+            transition: all ease-in-out 150ms;
+        }
+</style>
+
+@using Finalproject.Models
+@{
+    int memid = Convert.ToInt32(Session["MemberId"]);
+    using (ProjectEntities1 db = new ProjectEntities1())
+    {
+        var gdata = db.Patients.FirstOrDefault(a => a.MemberId == memid);
+        if (gdata != null)
+        {
+            <marquee>
+                <p style="font-weight:bolder;font-family:Courier New, Courier, monospace; font-size:18px;padding-left:3em;"><img src="~/Images/iconimage.png" height="20" width="20" /> Welcome @gdata.FirstName @gdata.LastName</p>
+            </marquee>
+            <div class="container">
+                <div class="box">
+                    <div class="menu">
+                        <div class="logo-box"></div>
+                        <div class="menu-list">
+                            <ul style="list-style-type:none;line-height:300%">
+                                <li>
+
+                                    <a href="@Url.Action("PateintHome", "Pateint")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Dashboard</span>
+                                    </a>
+                                    <br />
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("EditPateint", "Pateint")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Edit Profile</span>
+                                    </a>
+                                    <br />
+                                </li>
+                                <li>
+
+                                    <a href="@Url.Action("DoctorAppointment", "Pateint")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Doctor Appointment</span>
+                                    </a>
+                                    <br />
+                                </li>
+                                <li>
+
+                                    <a href="@Url.Action("ViewAppointment", "Pateint")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">View Appointment Details</span>
+                                    </a>
+                                    <br />
+                                </li>
+                                <li>
+
+                                    <a href="@Url.Action("SendMsgPateint", "Pateint")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Send Message to doctor</span>
+                                    </a>
+                                    <br />
+                                </li>
+
+                                <li>
+
+                                    <a href="@Url.Action("ViewMessage", "Pateint")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">View Messages</span>
+                                    </a>
+                                    <br />
+                                </li>
+
+                                <li>
+                                    <a href="@Url.Action("RaiseOrder", "Pateint")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Raise Drug Order</span>
+                                    </a>
+                                    <br />
+                                </li>
+
+                                <li>
+                                    <a href="@Url.Action("ViewOrder", "Pateint")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">View Order Details</span>
+                                    </a>
+                                    <br />
+                                </li>
+
+                                <li>
+                                    <a href="@Url.Action("PateintPass", "Pateint")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Change Password</span>
+                                    </a>
+                                    <br />
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+             var gdata2 = db.MemberLogins.FirstOrDefault(a => a.MemberId == memid);
+            <marquee>
+                <p style="font-weight:bolder;font-family:Courier New, Courier, monospace; font-size:18px;padding-left:3em;"><img src="~/Images/iconimage.png" height="20" width="20" /> Welcome @gdata2.EmailId</p>
+            </marquee>
+            <div class="container">
+                <div class="box">
+                    <div class="menu">
+                        <div class="logo-box"></div>
+                        <div class="menu-list">
+                            <ul style="list-style-type:none;line-height:300%">
+                                <li>
+
+                                    <a href="@Url.Action("PateintHome", "Pateint")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Dashboard</span>
+                                    </a>
+                                    <br />
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("EditPateint", "Pateint")" style="color:white; font-size:12px">
+                                        <span class="icon"><i class="fade fa-home"></i></span>
+                                        <span class="title">Edit Profile</span>
+                                    </a>
+                                    <br />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}

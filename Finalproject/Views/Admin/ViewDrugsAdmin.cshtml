@@ -1,0 +1,50 @@
+﻿@model Finalproject.Models.DrugViewModel
+@{
+    ViewBag.Title = "ViewDrugsAdmin";
+}
+
+
+<div class="row">
+    <div class="col-lg-3">
+        @{
+            Html.RenderPartial("AdminPartial");
+        }
+    </div>
+    <div class="col-lg-9">
+        <h3 style="color:white;">Drug Detailed List </h3><br />
+        @Html.HiddenFor(a => a.DrugId)
+        @Html.HiddenFor(a => a.IsDeleted)
+
+        <table class="table table-responsive">
+            <tr>
+                
+                <th>DrugName</th>
+                <th>Manufacture Date</th>
+                <th>Expiry Date</th>
+                <th>Used For</th>
+                <th>Side Effects</th>
+                <th>TotalQuantityAvailable</th>
+                <th colspan="2">Operation</th>
+            </tr>
+            @foreach (var item in Model.lstDrug)
+            {
+                <tr>
+                    <td>@item.DrugName</td>
+                    <td>@item.ManufactureDate.Value.ToString("dd-MMM-yyyy")</td>
+                    <td>@item.ExpiredDate.Value.ToString("dd-MMM-yyyy")</td>
+                    <td>@item.UsedFor</td>
+                    <td>@item.SideEffects</td>
+                    <td>@item.TotalQuantityAvailable</td>
+
+
+                    <td>
+                        <a href="@Url.Action("EditDrug","Admin", new { id=@item.DrugId})">Edit</a>
+                        <a href="@Url.Action("DeleteDrug","Admin", new { id=@item.DrugId})" onclick="
+    return confirm('Are You Sure Want To Delete')">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</div>

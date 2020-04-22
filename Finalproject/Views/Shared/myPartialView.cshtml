@@ -1,0 +1,45 @@
+﻿
+<style>
+    .home {
+    }
+
+    .logid {
+        position: absolute;
+        right: 100px;
+    }
+
+    .logib {
+        position: absolute;
+        right: 180px;
+        color: black;
+    }
+</style>
+@if (Request.IsAuthenticated)
+{
+    <div>
+        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", Style = "color:black" })
+    </div><div>
+        @Html.ActionLink("Contact", "About", "Home", new { area = "" }, new { @class = "navbar-brand", Style = "color:black" })
+    </div><div>
+        @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "navbar-brand", Style = "color:black" })
+    </div>
+
+}
+else
+{
+   
+        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", Style = "color:black" })
+   
+
+        @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "navbar-brand", Style = "color:black" })
+ 
+    <div >
+        @Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "navbar-brand", Style = "color:black" })
+    </div>
+    <div >
+        @Html.ActionLink("Register", "Register", "Home", new { area = "" }, new { @class = "navbar-brand", Style = "color:black" })
+    </div><div class="logid">
+    @Html.ActionLink("Login As Admin", "Login2", "Admin", new { area ="" }, new { @class = "navbar-brand", Style = "color:black" })
+        </div>
+}
+

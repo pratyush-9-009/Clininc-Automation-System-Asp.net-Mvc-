@@ -1,0 +1,46 @@
+﻿@model Finalproject.Models.PateintOrder
+@{
+    ViewBag.Title = "RaiseOrder";
+}
+
+
+<div class="row">
+    <div class="col-lg-3">
+
+        @{
+            Html.RenderPartial("PateintPartial");
+        }
+
+    </div>
+    <div class="col-lg-9">
+
+        @using (Html.BeginForm("PostRaiseOrder", "Pateint", FormMethod.Post))
+        {
+            <h3 style="color:white;">Request Your Medicine</h3><br />
+            <div class="form-group">
+                <label>Drug Name</label><label style="color:darkolivegreen"> *</label>
+                @Html.DropDownListFor(a => a.DrugId, Model.drglst, "Select", new { @class = "form-control" })
+                 @Html.ValidationMessageFor(a => a.DrugId, "", new { @class = "text-danger",style="color:white;" })
+            </div>
+
+            <div class="form-group">
+                <label>Quantity</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.Quantity, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Quantity, "", new { @class = "text-danger",style="color:white;" })
+
+            </div>
+
+
+
+            <div class="form-group">
+                <label></label>
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+
+            <div>
+                @ViewBag.message
+            </div>
+        }
+
+    </div>
+</div>

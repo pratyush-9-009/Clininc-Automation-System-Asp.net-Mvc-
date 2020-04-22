@@ -1,0 +1,76 @@
+﻿@model Finalproject.Models.DashboardModel
+@{
+    ViewBag.Title = "PateintHome";
+}
+
+
+    <div class="row">
+       
+        <div class="col-lg-3">
+            @{
+                Html.RenderPartial("PateintPartial");
+            }
+        </div>
+        <div class="col-lg-9">
+            <h3 style="color:white;">Your Space</h3><br>
+            <div class="row">
+                <div class="col-lg-4">
+
+                    <div class="card text-white bg-primary mb-3" style="width:200px; height:200px; border:double;">
+                        <div class="card-body text-center">
+                            <br /><br />
+                            <p class="card-text">Total Appointment</p>
+                            <p class="card-text">@Model.Pat_app</p>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <div class="card text-white bg-primary mb-3" style="width:200px; height:200px; border:double;">
+
+                        <div class="card-body text-center">
+                            <br />
+                            <h5 class="card-title">Appointment Status</h5>
+                            <p class="card-text">
+                                Approved : @Model.Pat_approv<br />
+                                Rejected : @Model.Pat_rejected<br />Requested : @Model.Pat_request<br />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <br /><br />
+            <div class="row">
+                <div class="col-lg-4">
+
+                    <div class="card text-white bg-primary mb-3" style="width:200px; height:200px; border:double;">
+                        <div class="card-body text-center">
+                            <br />
+                            <p class="card-text">Total Order</p>
+                            <p class="card-text">@Model.Pat_total</p>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+
+                    <div class="card text-white bg-primary mb-3" style="width:200px; height:200px; border:double;">
+                        <div class="card-body text-center">
+                            <br />
+                            <h5 class="card-title">Order Status</h5>
+                            <p class="card-text">
+                                <br />Orders Delievered : @Model.Pat_Delivered
+                                <br />Order Remaining : @Model.Pat_Remain<br />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

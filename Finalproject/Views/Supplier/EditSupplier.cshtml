@@ -1,0 +1,64 @@
+﻿@model Finalproject.Models.SupplierViewModel
+@{
+    ViewBag.Title = "EditSupplier";
+}
+  
+    <div class="row">
+        
+        <div class="col-lg-3">
+
+            @{
+                Html.RenderPartial("SupplierPartial");
+            }
+
+        </div>
+        @using (Html.BeginForm("PostEditSupplier", "Supplier", FormMethod.Post))
+        {
+
+            @Html.AntiForgeryToken()
+
+            <div class="col-lg-9">
+                <h3 style="color:white;">Edit Your profile </h3><br />
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label>First Name </label><label style="color:darkolivegreen"> *</label>
+                    @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(a => a.FirstName, "", new { @class = "text-danger",style="color:white;" })
+
+                </div>
+
+                <div class="form-group">
+                    <label>Last Name</label><label style="color:darkolivegreen"> *</label>
+                    @Html.TextBoxFor(a => a.LastName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(a => a.LastName, "", new { @class = "text-danger",style="color:white;" })
+
+                </div>
+
+                <div class="form-group">
+                    <label>Company Name</label><label style="color:darkolivegreen"> *</label>
+                    @Html.TextBoxFor(a => a.CompanyName, new { @class = "form-control", })
+                    @Html.ValidationMessageFor(a => a.CompanyName, "", new { @class = "text-danger",style="color:white;" })
+
+                </div>
+
+
+                <div class="form-group">
+                    <label>Company Address</label><label style="color:darkolivegreen"> *</label>
+                    @Html.TextBoxFor(a => a.CompanyAddress, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(a => a.CompanyAddress, "", new { @class = "text-danger",style="color:white;" })
+
+                </div>
+
+
+                <div class="form-group">
+                    <label></label>
+                    <input type="Submit" value="Save" class="btn btn-success" />
+                </div>
+                <div>
+                    @ViewBag.message
+                </div>
+            </div>
+        }
+    </div>
+

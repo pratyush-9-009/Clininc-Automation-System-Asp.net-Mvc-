@@ -1,0 +1,109 @@
+﻿@import 'https://fonts.googleapis.com/css?family=Montserrat';
+
+
+
+/*---End Resets--- */
+/*---Color Variables--- */
+/*--End Color Variables--- */
+
+/*   Holder for the Content   */
+.elipse:hover elipse::after {
+    color: white;
+}
+.box {
+    width: 1200px;
+    height: 900px;
+    overflow: hidden;
+    
+    display: flex;
+    
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+/*   Side Menu Bar   */
+
+
+/*   Holder for Logo   */
+
+
+/*   Menu Buttons   */
+.menu-list li {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    text-decoration-color:white;
+    letter-spacing: 1px;
+    padding: 0px 0px;
+    list-style: none;
+    color: white;
+    -webkit-transition: all ease-in-out 150ms;
+    transition: all ease-in-out 150ms;
+    width: 200px;
+    height:110px;
+    background-color: #581A51;
+    z-index: 4;
+    /*   Background for each menu   */
+    /*   Margin to push menus to the right   */
+}
+
+    .menu-list li:nth-child(1) {
+        /*background-color: #6A2761;*/
+        background-color: #6A2761;
+    }
+
+    .menu-list li:nth-child(2) {
+        background-color: #802767;
+        /*#802767;*/
+    }
+
+    .menu-list li:nth-child(3) {
+        background-color: #8A2864;
+    }
+
+    .menu-list li:nth-child(4) {
+        background-color: #A52868;
+    }
+
+    .menu-list li:nth-child(5) {
+        background-color: #B32969;
+    }
+
+    .menu-list li:nth-child(6) {
+        background-color: #C22A6A;
+    }
+
+    .menu-list li:nth-child(7) {
+        background-color: #CB2E6C;
+    }
+
+    .menu-list li:hover {
+        box-shadow: 2px 4px 30px 7px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        width: 220px;
+        position: relative;
+        z-index: 5;
+        /*   Add 8 px on hover to margin to keep up with animation   */
+    }
+
+        .menu-list li:hover a {
+            margin-left: 88px;
+        }
+
+    .menu-list li a {
+        margin-left: 10px;
+        -webkit-transition: all ease-in-out 150ms;
+        transition: all ease-in-out 150ms;
+    }
+
+/*    Gender Simbol and weight info on the bottom   */
+.big-man-bottom {
+    color: rgba(88, 26, 81, 0.6);
+    font-size: 66.7px;
+    text-align: center;
+    font-stretch: expanded;
+    margin-top: 60px;
+    -webkit-transform: scale(1, 1.2);
+    transform: scale(1, 1.2);
+}
+

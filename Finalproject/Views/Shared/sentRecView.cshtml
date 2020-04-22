@@ -1,0 +1,37 @@
+﻿@using Finalproject.Models;
+@{
+    int memid = Convert.ToInt32(Session["MemberId"]);
+    using (ProjectEntities1 im = new ProjectEntities1())
+    {
+        var gdata = im.MemberLogins.FirstOrDefault(a => a.MemberId == memid);
+        if (gdata.RoleId == 1)
+        {
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+
+                    <ul class="nav navbar-nav">
+
+                        <li><a href="@Url.Action("ViewMessageDoc", "Doctor")">Inbox</a></li>
+                        <li><a href="@Url.Action("ViewMessageSent", "Doctor")">Sent Messages</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+        }
+        else if (gdata.RoleId == 2)
+        {
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+
+                    <ul class="nav navbar-nav">
+
+                        <li><a href="@Url.Action("ViewMessage", "Pateint")">Inbox</a></li>
+                        <li><a href="@Url.Action("ViewMessageSentPateint", "Pateint")">Sent Messages</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+            }
+        }
+    }

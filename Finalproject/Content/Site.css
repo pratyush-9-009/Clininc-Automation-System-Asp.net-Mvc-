@@ -1,0 +1,39 @@
+﻿/*body {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}*/
+body {
+    margin: 0;
+    font: normal 75% Arial, Helvetica, sans-serif;
+}
+
+canvas {
+    display: block;
+    vertical-align: bottom;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+.mcen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 30em;
+    height: 25em;
+    margin-top: -12em;
+    margin-left: -15em;
+}
+
+/* ---- reset ---- */
+

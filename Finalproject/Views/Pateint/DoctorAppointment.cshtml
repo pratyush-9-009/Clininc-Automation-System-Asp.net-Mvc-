@@ -1,0 +1,55 @@
+﻿@model Finalproject.Models.DoctorAppModel
+@{
+    ViewBag.Title = "DoctorAppointment";
+}
+
+
+<div class="row">
+    <div class="col-lg-3 px-0">
+
+        @{
+            Html.RenderPartial("PateintPartial");
+        }
+
+    </div>
+    @using (Html.BeginForm("PostDoctorAppointment", "Pateint", FormMethod.Post))
+    {
+        <div class="col-lg-9">
+            <h3 style="color:white;">Ask For Appointment Here</h3><br/>
+            <div class="form-group">
+                <label>List Of Doctors Available</label><label style="color:darkolivegreen"> *</label>
+                @Html.DropDownListFor(a => a.DoctorId, Model.doclst, "Select", new { @class = "form-control" })
+                 @Html.ValidationMessageFor(a => a.DoctorId, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label>Subject</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.Subject, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Subject, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                <label>Description</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.Description, new { @class = "form-control", style = "height:70px;" })
+                @Html.ValidationMessageFor(a => a.Description, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label>Appointment Date (mm/dd/yyyy)</label><label style="color:darkolivegreen"> *</label>
+                @Html.TextBoxFor(a => a.AppointmentDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.AppointmentDate, "", new { @class = "text-danger" })
+
+            </div>
+            
+            <div class="form-group">
+                <label></label>
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+            <div>
+            @ViewBag.message
+            </div>
+        </div>
+    }
+    </div>
+
+
+

@@ -1,0 +1,42 @@
+﻿@model Finalproject.Models.PateintOrder
+@{
+    ViewBag.Title = "ViewOrder";
+}
+   
+    <div class="row">
+        <div class="col-lg-3">
+
+            @{
+                Html.RenderPartial("PateintPartial");
+            }
+
+        </div>
+        
+        <div class="col-lg-9">
+            <h3 style="color:white;">View Your Orders Here!</h3><br/>
+            <table class="table table-responsive">
+                <tr>
+                    <th>Drug Name</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Order Date</th>
+
+
+
+                </tr>
+                @foreach (var item in Model.lstPateint)
+                {
+                    <tr>
+                        <td>@item.DrugName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.OrderStatus</td>
+                        <td>@item.OrderedDate.Value.ToString("dd-MMM-yyyy")</td>
+
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+

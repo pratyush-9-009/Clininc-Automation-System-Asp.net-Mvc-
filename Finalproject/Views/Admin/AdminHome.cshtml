@@ -1,0 +1,101 @@
+﻿@model Finalproject.Models.DashboardModel
+@{
+    ViewBag.Title = "AdminHome";
+}
+
+
+<div class="row">
+    <div class="col-lg-3">
+        @{
+            Html.RenderPartial("AdminPartial");
+        }
+    </div>
+    <div class="col-lg-9">
+        <h3 style="color:white;">Admin Space </h3><br />
+        <div class="row">
+            <div class="col-lg-3">
+
+                <div class="card text-white bg-primary mb-3" style="width:200px; height:200px; border:double;">
+                    <br /><br />
+                    <div class="card-body text-center">
+                        <p class="card-text">Total Doctor</p>
+                        <p class="card-text">
+                            @Model.TotalDoctor
+
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+
+                <div class="card text-white bg-primary mb-3" style="width:200px; height:200px;border:double;">
+                    <br /><br />
+                    <div class="card-body text-center">
+                        <p class="card-text">Total Pateint</p>
+                        <p class="card-text">
+                            @Model.TotalPateint
+
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="card text-white bg-primary mb-3" style="width:200px; height:200px;border:double;">
+                    <br />  <div class="card-header text-center">Status Count</div>
+                    <br />
+                    <div class="card-body text-center">
+
+                        <p class="card-text">
+                            Total Order :@Model.TotalOrder<br/>
+                            Dispatched : @Model.Dispatched<br />
+                            Delievered : @Model.Delievered<br />
+                            Requested : @Model.Requested<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br /><br />
+              <div class="row">
+                 
+                  <div class="col-lg-3">
+
+                      <div class="card text-white bg-primary mb-3" style="width:200px; height:200px;border:double;">
+                          <br /><br />
+                          <div class="card-body text-center">
+                              <p class="card-text">Total Supplier</p>
+                              <p class="card-text">
+                                  @Model.TotalSupplier
+
+                              </p>
+                          </div>
+
+                      </div>
+                  </div>
+
+                  <div class="col-lg-3">
+                      <div class="card text-white bg-primary mb-3" style="width:200px; height:200px;border:double;">
+                          <br />  <div class="card-header text-center">Status Count</div>
+                          <br />
+                          <div class="card-body text-center">
+
+                              <p class="card-text">
+                                  Total Order :@Model.TotalOrder<br />
+                                  Assigned : @Model.Assigned<br />
+                                  Not Assigned : @Model.NotAssigned<br />
+
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
+
+    </div>
+</div>

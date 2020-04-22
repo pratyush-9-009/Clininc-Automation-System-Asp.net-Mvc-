@@ -1,0 +1,88 @@
+﻿@model Finalproject.Models.DashboardModel
+@{
+    ViewBag.Title = "DoctorHome";
+}
+
+
+<div class="row">
+    <div class="col-lg-3">
+        @{
+            Html.RenderPartial("DoctorPartial");
+        }
+    </div>
+    <div class="col-lg-9">
+
+        <h3 style="color:white">Doctor's Space</h3><br/>
+        <div class="row">
+            <div class="col-lg-3">
+
+                <div class="card text-white bg-primary mb-3" style="width:200px; height:200px; border:double;">
+                    <br /><br />
+                    <div class="card-body text-center">
+                        <p class="card-text">Total Appointment</p>
+                        <p class="card-text">
+                            @Model.TotalAppoint
+
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-3">
+                <div class="card text-white bg-primary mb-3" style="width:200px; height:200px; border:double;">
+                    <br />  <div class="card-header text-center">Status</div>
+                    <br />
+                    <div class="card-body text-center">
+
+                        <p class="card-text">
+                            Approved :@Model.Tapprove<br />
+                            Rejected : @Model.Trejected<br />
+                            Requested : @Model.Trequested<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-lg-3">
+
+                <div class="card text-white bg-primary mb-3" style="width:200px; height:200px; border:double;">
+                    <br /><br />
+                    <div class="card-body text-center">
+                        <p class="card-text">Inbox Message</p>
+                        <p class="card-text">
+                            @Model.TInbox
+
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="card text-white bg-primary mb-3" style="width:200px; height:200px; border:double;">
+                    <br />  <div class="card-header text-center">Inbox Message</div>
+                    <br />
+                    <div class="card-body text-center">
+
+                        <p class="card-text">
+                            Read :@Model.TRead<br />
+                            Unread : @Model.Tunread<br />
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
